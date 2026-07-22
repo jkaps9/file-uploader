@@ -1,4 +1,4 @@
-const { prisma } = require("../database/prismaClient.js");
+const prisma = require("../database/prismaClient.js");
 const { Router } = require("express");
 const router = Router();
 const bcrypt = require("bcryptjs");
