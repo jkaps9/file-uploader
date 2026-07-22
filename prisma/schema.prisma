@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique
+  username      String
+  password      String
+  documents     Entity[]
+  sharedFolders SharedFolder[]
+
+  @@map("users") // Specify resultant DB table name
+}
+
+enum EntityType {
+  FOLDER
+  FILE
+}
+
+model Entity {
+  id            Int         @id @default(autoincrement())
+  name          String 
+  type          EntityType
+  size          Int?
+  mimeType      String?
+  createdAt     DateTime    @default(now())
+  parentId      Int?        // Optional field for parent folder
+  userId        Int
+  user          User         @relation(fields: [userId], references: [id])
+
+  parentFolder  Entity?      @relation("EntityParent", fields: [parentId], references: [id], onDelete: Cascade)
+  childEntities Entity[]     @relation("EntityParent")
+  sharedFolders SharedFolder[]
+
+  @@index([parentId])
+  @@index([userId])
+
+  @@map("entities")
+}
+
+model SharedFolder {
+  id          String    @id @default(uuid())
+  userId      Int
+  folderId    Int
+  expiresAt   DateTime
+  
+  user User @relation(fields: [userId], references: [id])
+  folder Entity @relation(fields: [folderId], references: [id], onDelete: Cascade)
+
+  @@map("shared_folders")
+  @@index([userId])
+  @@index([folderId])
+}
+
+model Session {
+  id          String   @id
+  sid         String   @unique
+  data        String   @db.Text // MediumText may be needed for MySql
+  expiresAt   DateTime
+
+  @@map("sessions")
+}
