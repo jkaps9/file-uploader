@@ -7,6 +7,7 @@ const sessionConfig = require("./config/session");
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const uploadRouter = require("./routes/upload");
+const folderRouter = require("./routes/folder");
 const assetsPath = path.join(__dirname, "public");
 
 app.set("views", path.join(__dirname, "views"));
@@ -25,6 +26,7 @@ require("./config/passport");
 app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", uploadRouter);
+app.use("/", folderRouter);
 
 app.listen(3000, (error) => {
   if (error) {
