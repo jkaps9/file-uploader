@@ -15,11 +15,27 @@
             enctype="multipart/form-data"
           >
             <div>
-              <label for="file">Upload a file:</label>
+              <h3>Upload File</h3>
+            </div>
+            <div>
+              <label for="file">Choose file</label>
               <input type="file" id="file" name="file" />
             </div>
             <div>
               <button type="submit">Submit</button>
+            </div>
+          </form>
+
+          <form action="/folder/create" method="POST">
+            <div>
+              <h3>Create Folder</h3>
+            </div>
+            <div>
+              <label for="folder">Name</label>
+              <input type="text" id="folder" name="folder" />
+            </div>
+            <div>
+              <button type="submit">Create</button>
             </div>
           </form>
         </div>
