@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/file/upload", upload.single("file"), function (req, res, next) {
-  console.log(req.file);
+  res.redirect("/");
 });
 
 const uploadMiddleware = upload.fields([{ name: "file", maxCount: 1 }]);
