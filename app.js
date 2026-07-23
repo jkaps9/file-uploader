@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const passport = require("passport");
+const sessionConfig = require("./config/sessionConfig");
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const assetsPath = path.join(__dirname, "public");
@@ -15,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(sessionConfig);
 app.use("/", indexRouter);
 app.use("/", authRouter);
 
