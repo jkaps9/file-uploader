@@ -18,8 +18,8 @@
               <h3>Upload File</h3>
             </div>
             <div>
-              <label for="folderLocation">Choose folder to upload to</label>
               <% if (folders && folders.length!==0) {%>
+              <label for="folderLocation">Choose folder to upload to</label>
               <select name="folderLocation" id="folderLocation">
                     <% folders.forEach((folder)=>{%>
                         <option value="<%= folder.name %>">
@@ -46,6 +46,19 @@
               <label for="folderName">Name</label>
               <input type="text" id="folderName" name="folderName" />
             </div>
+            
+              <label for="folderLocation">Choose parent folder (optional)</label>
+              <select name="folderLocation" id="folderLocation">
+                <option value="none" selected> </option>
+                  <% if (folders && folders.length!==0) {%>
+                    <% folders.forEach((folder)=>{%>
+                        <option value="<%= folder.name %>">
+                            <%= folder.name %>
+                        </option>
+                    <%})%>
+                  <%}%>
+              </select>
+
             <div>
               <button type="submit">Create</button>
             </div>
