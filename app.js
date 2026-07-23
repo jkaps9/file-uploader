@@ -3,7 +3,7 @@ const path = require("node:path");
 const express = require("express");
 const app = express();
 const passport = require("passport");
-const sessionConfig = require("./config/sessionConfig");
+const sessionConfig = require("./config/session");
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const assetsPath = path.join(__dirname, "public");
@@ -18,6 +18,8 @@ app.use(sessionConfig);
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+require("./config/passport");
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
