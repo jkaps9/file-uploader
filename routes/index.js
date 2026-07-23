@@ -9,14 +9,8 @@ router.get("/", async (req, res, next) => {
 
   next();
 
-  const errorMessage =
-    req.query.error === "bad_password"
-      ? "Incorrect secret password. Try again."
-      : null;
-
   res.render("index", {
     user: req.user,
-    error: errorMessage,
   });
 });
 
