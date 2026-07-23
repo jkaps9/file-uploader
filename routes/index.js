@@ -8,14 +8,16 @@ router.get("/", async (req, res, next) => {
     return res.render("home");
   }
 
-  next();
-
   const folders = await prisma.entity.findMany({
     where: {
       userId: req.user.id,
       type: EntityType.FOLDER,
     },
   });
+
+  next();
+
+  console.log(folders);
   res.render("index", {
     user: req.user,
     folders: folders,

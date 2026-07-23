@@ -1,0 +1,9 @@
+<% if (locals.folders && locals.folders.length!==0) {%>
+    <ul class="folder-list">
+        <% folders.forEach((folder)=>{%>
+            <li class="folder-list__item">
+                <%= folder.name %>
+            </li>
+        <%})%>
+    </ul>
+<%}%>
