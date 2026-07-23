@@ -145,7 +145,11 @@ a:hover {
 
 label {
   display: block;
-  margin-block: 1.5rem 0.5rem;
+  margin-block-end: 0.5rem;
+}
+
+input {
+  margin-block-end: 1.5rem;
 }
 
 form {
@@ -161,8 +165,9 @@ form {
   }
 
   button {
+    font-weight: 700;
     justify-self: end;
-    margin-block-start: 1.5rem;
+    text-transform: uppercase;
   }
 }
 
