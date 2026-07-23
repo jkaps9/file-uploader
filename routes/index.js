@@ -17,7 +17,6 @@ router.get("/", async (req, res, next) => {
 
   next();
 
-  console.log(folders);
   res.render("index", {
     user: req.user,
     folders: folders,
