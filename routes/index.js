@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
   const entities = await prisma.entity.findMany({
     where: {
       userId: req.user.id,
+      type: EntityType.FOLDER,
     },
     orderBy: [
       {
