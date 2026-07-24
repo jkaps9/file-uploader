@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+  <body>
+    <%- include("partials/header.ejs") %>
+
+    <main>
+      <section>
+        <div class="container">
+            <% if (file) {%>
+                <h2>File Information</h2>
+                <p>Name: <%= file.name %></p>
+                <p>Size: <%= Math.round(file.size/1024) %>. <%= Math.round((file.size % 1024)/100) %> kb</p>
+                <p>Type: <%= file.mimeType.split("/")[1] %></p>
+                <p>Created: <%= file.createdAt.toLocaleString() %></p>
+            <%}%>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

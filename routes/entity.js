@@ -58,7 +58,7 @@ router.get("/folder/:id", async (req, res) => {
   const entityId = parseInt(req.params.id);
   const folder = await prisma.entity.findFirst({
     where: {
-      userId: req.userId,
+      userId: req.user.id,
       type: EntityType.FOLDER,
       id: entityId,
     },
@@ -66,7 +66,7 @@ router.get("/folder/:id", async (req, res) => {
 
   const entities = await prisma.entity.findMany({
     where: {
-      userId: req.userId,
+      userId: req.user.id,
       type: EntityType.FILE,
       parentId: entityId,
     },
@@ -74,6 +74,21 @@ router.get("/folder/:id", async (req, res) => {
   res.render("folder", {
     folder: folder,
     entities: entities,
+  });
+});
+
+router.get("/file/:id", async (req, res) => {
+  const entityId = parseInt(req.params.id);
+  const file = await prisma.entity.findFirst({
+    where: {
+      userId: req.user.id,
+      type: EntityType.FILE,
+      id: entityId,
+    },
+  });
+
+  res.render("file", {
+    file: file,
   });
 });
 
