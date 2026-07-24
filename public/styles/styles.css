@@ -125,10 +125,6 @@ section {
 button {
   background: none;
   border: none;
-
-  background-color: var(--color-primary);
-  color: var(--color-bg);
-  padding: 0.5em 1.5em;
 }
 
 button:hover {
@@ -165,8 +161,11 @@ form {
   }
 
   button {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
     font-weight: 700;
     justify-self: end;
+    padding: 0.5em 1.5em;
     text-transform: uppercase;
   }
 }
@@ -174,6 +173,7 @@ form {
 .button-form {
   border: none;
   margin: 0;
+  min-width: 0;
   padding: 0;
 }
 
@@ -188,4 +188,47 @@ form {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.icon-button {
+  background: none;
+  border-radius: 0.25rem;
+  color: var(--color-text);
+  display: flex;
+  min-height: 1.75rem;
+  min-width: 1.75rem;
+  padding: 0.25rem;
+}
+
+.icon-button:hover {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.icon-button--delete:hover {
+  color: #cc0000;
+}
+
+.folder-list {
+  display: grid;
+  width: fit-content;
+}
+
+.folder-list__item {
+  background-color: transparent;
+  border: 1px solid transparent;
+  min-width: 33vw;
+  padding: 0.5rem;
+  width: stretch;
+
+  .buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.folder-list__item:hover {
+  background-color: rgb(from var(--color-bg) 30 30 30);
+  border-color: rgb(from var(--color-bg) 40 40 40);
+  cursor: pointer;
 }

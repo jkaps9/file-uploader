@@ -19,4 +19,13 @@ router.post("/folder/create", async (req, res) => {
   }
 });
 
+router.post("/folder/delete", async (req, res) => {
+  try {
+    await prisma.entity.delete({
+      where: {},
+    });
+  } catch (error) {
+    console.error("couldn't  delete folder", error);
+  }
+});
 module.exports = router;
