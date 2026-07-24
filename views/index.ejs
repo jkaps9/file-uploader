@@ -22,7 +22,7 @@
               <label for="folderLocation">Choose folder to upload to</label>
               <select name="folderLocation" id="folderLocation">
                     <% folders.forEach((folder)=>{%>
-                        <option value="<%= folder.name %>">
+                        <option value="<%= folder.id %>">
                             <%= folder.name %>
                         </option>
                     <%})%>
