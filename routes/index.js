@@ -25,7 +25,6 @@ router.get("/", async (req, res, next) => {
       },
     ],
   });
-  console.log(entities);
   next();
 
   res.render("index", {

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+  <body>
+    <%- include("partials/header.ejs") %>
+
+    <main>
+      <section>
+        <div class="container">
+          <h2><%= folder ? folder.name : 'Files' %></h2>
+          <%- include("partials/entityList.ejs") %>
+        </div>
+      </section>
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

@@ -54,4 +54,27 @@ router.post("/entity/rename/:id", async (req, res) => {
   }
 });
 
+router.get("/folder/:id", async (req, res) => {
+  const entityId = parseInt(req.params.id);
+  const folder = await prisma.entity.findFirst({
+    where: {
+      userId: req.userId,
+      type: EntityType.FOLDER,
+      id: entityId,
+    },
+  });
+
+  const entities = await prisma.entity.findMany({
+    where: {
+      userId: req.userId,
+      type: EntityType.FILE,
+      parentId: entityId,
+    },
+  });
+  res.render("folder", {
+    folder: folder,
+    entities: entities,
+  });
+});
+
 module.exports = router;
