@@ -7,7 +7,7 @@
     <main>
       <section>
         <div class="container">
-          <h2>Welcome <%= locals.user ? user.username : '' %></h2>
+          <h2>Folders</h2>
           <%- include("partials/folderList.ejs") %>
           <form
             action="/file/upload"
