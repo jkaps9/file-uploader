@@ -8,18 +8,25 @@ router.get("/", async (req, res, next) => {
     return res.render("home");
   }
 
-  const folders = await prisma.entity.findMany({
+  const entities = await prisma.entity.findMany({
     where: {
       userId: req.user.id,
-      type: EntityType.FOLDER,
     },
+    orderBy: [
+      {
+        id: "asc",
+      },
+      {
+        parentId: { sort: "asc", nulls: "first" },
+      },
+    ],
   });
-
+  console.log(entities);
   next();
 
   res.render("index", {
     user: req.user,
-    folders: folders,
+    entities: entities,
   });
 });
 

@@ -19,31 +19,29 @@ router.post("/folder/create", async (req, res) => {
   }
 });
 
-router.post("/folder/delete/:id", async (req, res) => {
+router.post("/entity/delete/:id", async (req, res) => {
   try {
-    const folderId = parseInt(req.params.id);
+    const entityId = parseInt(req.params.id);
     await prisma.entity.delete({
       where: {
-        id: folderId,
-        type: EntityType.FOLDER,
+        id: entityId,
       },
     });
     res.redirect("/");
   } catch (error) {
-    console.error("couldn't  delete folder", error);
-    res.status(500).send("Error deleting folder");
+    console.error("couldn't  delete entity", error);
+    res.status(500).send("Error deleting entity");
   }
 });
 
-router.post("/folder/rename/:id", async (req, res) => {
+router.post("/entity/rename/:id", async (req, res) => {
   try {
-    const folderId = parseInt(req.params.id);
+    const entityId = parseInt(req.params.id);
     const { newName } = req.body;
 
     await prisma.entity.update({
       where: {
-        id: folderId,
-        type: EntityType.FOLDER,
+        id: entityId,
       },
       data: {
         name: newName,
@@ -51,8 +49,8 @@ router.post("/folder/rename/:id", async (req, res) => {
     });
     res.redirect("/");
   } catch (error) {
-    console.error("couldn't  delete folder", error);
-    res.status(500).send("Error deleting folder");
+    console.error("couldn't  delete entity", error);
+    res.status(500).send("Error deleting entity");
   }
 });
 

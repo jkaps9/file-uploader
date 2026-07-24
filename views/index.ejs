@@ -8,7 +8,7 @@
       <section>
         <div class="container">
           <h2>Folders</h2>
-          <%- include("partials/folderList.ejs") %>
+          <%- include("partials/entityList.ejs") %>
           <form
             action="/file/upload"
             method="POST"
@@ -18,10 +18,10 @@
               <h3>Upload File</h3>
             </div>
             <div>
-              <% if (folders && folders.length!==0) {%>
+              <% if (entities && entities.filter(entity => entity.type==="FOLDER").length!==0) {%>
               <label for="folderLocation">Choose folder to upload to</label>
               <select name="folderLocation" id="folderLocation">
-                    <% folders.forEach((folder)=>{%>
+                    <% entities.filter(entity => entity.type==="FOLDER").forEach((folder)=>{%>
                         <option value="<%= folder.id %>">
                             <%= folder.name %>
                         </option>
@@ -50,8 +50,8 @@
               <label for="folderLocation">Choose parent folder (optional)</label>
               <select name="folderLocation" id="folderLocation">
                 <option value="none" selected> </option>
-                  <% if (folders && folders.length!==0) {%>
-                    <% folders.forEach((folder)=>{%>
+                  <% if (entities && entities.filter(entity => entity.type==="FOLDER").length!==0) {%>
+                    <% entities.filter(entity => entity.type==="FOLDER").forEach((folder)=>{%>
                         <option value="<%= folder.name %>">
                             <%= folder.name %>
                         </option>

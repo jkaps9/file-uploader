@@ -209,12 +209,12 @@ form {
   color: #cc0000;
 }
 
-.folder-list {
+.entity-list {
   display: grid;
   width: fit-content;
 }
 
-.folder-list__item {
+.entity-list__item {
   background-color: transparent;
   border: 1px solid transparent;
   min-width: 33vw;
@@ -227,7 +227,7 @@ form {
   }
 }
 
-.folder-list__item:hover {
+.entity-list__item:hover {
   background-color: rgb(from var(--color-bg) 30 30 30);
   border-color: rgb(from var(--color-bg) 40 40 40);
   cursor: pointer;
