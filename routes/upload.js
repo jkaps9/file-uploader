@@ -8,7 +8,10 @@ const { EntityType } = require("../generated/prisma/client.js");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const filePath = path.join("/tmp/my-uploads", req.body.folderLocation);
+    const filePath = path.join(
+      "/tmp/my-uploads",
+      req.body.folderLocation || "",
+    );
 
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(filePath, { recursive: true });
