@@ -225,6 +225,10 @@ form {
     display: flex;
     gap: 0.5rem;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .entity-list__item:hover {
